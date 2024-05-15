@@ -1,0 +1,10 @@
+{
+    "description": "The unit of the Duration, UN/CEFACT Common Code for Units of Duration.",
+  
+    "type": "string",
+  
+    "enum": [
+      "MIN",
+      "SEC"
+    ]
+  }

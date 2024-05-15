@@ -1,0 +1,13 @@
+{
+    "description": "The type of the value.",
+  
+    "type": "string",
+  
+    "enum": [
+      "String",
+      "Number",
+      "Object",
+      "Array",
+      "Boolean"
+    ]
+  }

@@ -1,0 +1,160 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Animal observations API specifications ",
+      "description": "Specifications for messages that support livestock animal observations.",
+      "version": "1.4",
+      "contact": {
+        "name": "Animal Data Exchange Working Group",
+        "url": "https://www.icar.org/index.php/technical-bodies/working-groups/animal-data-exchange-wg/",
+        "email": "icar@icar.org"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://icar-ade.standard.com"
+      }
+    ],
+    "tags": [
+      {
+        "name": "ADE-1.4 animal observations",
+        "description": "Animal observations messages approved by the working group."
+      }
+    ],
+    "paths": {
+      "/locations/{location-scheme}/{location-id}/animal-observations": {
+        "get": {
+          "operationId": "get-animal-observations",
+          "summary": "Get animal observations.",
+          "tags": [
+            "ADE-1.4 observations"
+          ],
+          "description": "# Purpose \n This endpoint returns data about animal observations for all animals on a specific location. \n If animal-scheme and animal-id are provided, only the observations for that animal are returned. \n",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/location-scheme"
+            },
+            {
+              "$ref": "#/components/parameters/location-id"
+            },
+            {
+              "$ref": "#/components/parameters/animal-scheme"
+            },
+            {
+              "$ref": "#/components/parameters/animal-id"
+            },
+            {
+              "$ref": "#/components/parameters/observation-types"
+            },
+            {
+              "$ref": "#/components/parameters/observation-datetime-from"
+            },
+            {
+              "$ref": "#/components/parameters/observation-datetime-to"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful. The response contains animal observations for the given location.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/icarAnimalObservationCollection"
+                  }
+                }
+              }
+            },
+            "default": {
+              "$ref": "#/components/responses/default"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "icarAnimalObservationCollection": {
+          "$ref": "../collections/icarAnimalObservationCollection.json"
+        }
+      },
+      "parameters": {
+        "location-scheme": {
+          "name": "location-scheme",
+          "in": "path",
+          "description": "The scheme id for the location identifier.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "location-id": {
+          "name": "location-id",
+          "in": "path",
+          "description": "The unique identifier for the location.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "animal-scheme": {
+          "name": "animal-scheme",
+          "in": "query",
+          "description": "The scheme id for the animal identifier.",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "animal-id": {
+          "name": "animal-id",
+          "in": "query",
+          "description": "The unique identifier for the animal.",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "observation-types": {
+          "name": "observation-types",
+          "in": "query",
+          "description": "Observation type that you want to request, see observation types Enum icarObservationType.",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "observation-datetime-from": {
+          "name": "observation-datetime-from",
+          "in": "query",
+          "description": "The start datetime of the range in which you want to request data (UTC).",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "observation-datetime-to": {
+          "name": "observation-datetime-to",
+          "in": "query",
+          "description": "The end datetime of the range in which you want to request data (UTC).",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "responses": {
+        "default": {
+          "description": "An error has occured while handling the request. Check the content of the message for the error details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../collections/icarErrorCollection.json"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

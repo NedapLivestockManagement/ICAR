@@ -1,0 +1,14 @@
+{
+    "description": "Enumeration that defines the types that specifies the observations.",
+  
+    "type": "string",
+  
+    "enum": [
+      "DailyRuminationTime",
+      "DailyEatingTime",
+      "DailyInactiveTime",
+      "Last24HourRuminationTime",
+      "Last24HourEatingTime",
+      "Last24HourInactiveTime"
+    ]
+  }
