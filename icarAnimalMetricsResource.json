@@ -1,5 +1,5 @@
 {
-    "description": "Describes animal observations.",
+    "description": "Describes animal metrics.",
     "allOf": [
       {
         "$ref": "../resources/icarResource.json"
@@ -14,10 +14,10 @@
             "$ref": "../types/icarAnimalIdentifierType.json",
             "description": "Unique animal scheme and identifier combination."
           },
-          "AnimalObservations": {
+          "AnimalMetrics": {
             "type": "array",
-            "$ref": "../types/icarAnimalObservationType.json",
-            "description": "Observation information of an animal."
+            "$ref": "../types/icarAnimalMetricType.json",
+            "description": "Metric information of an animal."
           }
         }
       }

@@ -1,0 +1,50 @@
+{
+  "description": "Metric information of an animal.",
+
+  "type": "object",
+
+  "properties": {
+    "timestamp": {
+      "$ref": "../types/icarDateTimeType.json",
+      "description": "The start date and time of the metric in UTC."
+    },
+    "isComplete": {
+      "type": "boolean",
+      "description": "Flag that indicates if the metric is complete. For daily metrics this flag is complete if the value is based on a full day of metrics. If not all metrics have been received the value will be false."
+    },
+    "type": {
+      "description": "Enumeration that defines the types that specifies the animal metrics.",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "DailyRuminationTime",
+          "DailyEatingTime",
+          "DailyInactiveTime",
+          "DailyLyingTime",
+          "DailyStandingTime",
+          "DailyRestingTime",
+          "DailyDrinkingTime",
+          "Last24HourRuminationTime",
+          "Last24HourEatingTime",
+          "Last24HourInactiveTime",
+          "Last24HourLyingTime",
+          "Last24HourStandingTime",
+          "Last24HourRestingTime",
+          "Last24HourDrinkingTime"
+        ]
+      }
+    },
+    "unit": {
+      "$ref": "../enums/uncefactDurationUnitType.json",
+      "description": "The unit of the duration, UN/CEFACT Common Code for Units of duration."
+    },
+    "value": {
+      "type": "object",
+      "descriptions": "The metric value."
+    },
+    "valueType": {
+      "$ref": "../enums/icarValueType.json",
+      "description": "The type of the metric values."
+    }
+  }
+}

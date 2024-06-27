@@ -1,0 +1,25 @@
+{
+    "description": "Describes animal metrics.",
+    "allOf": [
+      {
+        "$ref": "../resources/icarResource.json"
+      },
+      {
+        "type": "object",
+        "required": [
+          "animal"
+        ],
+        "properties": {
+          "animal": {
+            "$ref": "../types/icarAnimalIdentifierType.json",
+            "description": "Unique animal scheme and identifier combination."
+          },
+          "AnimalMetrics": {
+            "type": "array",
+            "$ref": "../types/icarAnimalMetricType.json",
+            "description": "Metric information of an animal."
+          }
+        }
+      }
+    ]
+  }

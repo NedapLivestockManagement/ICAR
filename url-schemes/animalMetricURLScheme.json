@@ -1,8 +1,8 @@
 {
     "openapi": "3.1.0",
     "info": {
-      "title": "Animal observations API specifications ",
-      "description": "Specifications for messages that support livestock animal observations.",
+      "title": "Animal metrics API specifications ",
+      "description": "Specifications for messages that support livestock animal metrics.",
       "version": "1.4",
       "contact": {
         "name": "Animal Data Exchange Working Group",
@@ -17,19 +17,19 @@
     ],
     "tags": [
       {
-        "name": "ADE-1.4 animal observations",
-        "description": "Animal observations messages approved by the working group."
+        "name": "ADE-1.4 animal metrics",
+        "description": "Animal metrics messages approved by the working group."
       }
     ],
     "paths": {
-      "/locations/{location-scheme}/{location-id}/animal-observations": {
+      "/locations/{location-scheme}/{location-id}/animal-metrics": {
         "get": {
-          "operationId": "get-animal-observations",
-          "summary": "Get animal observations.",
+          "operationId": "get-animal-metrics",
+          "summary": "Get animal metrics.",
           "tags": [
-            "ADE-1.4 observations"
+            "ADE-1.4 animal metrics"
           ],
-          "description": "# Purpose \n This endpoint returns data about animal observations for all animals on a specific location. \n If animal-scheme and animal-id are provided, only the observations for that animal are returned. \n",
+          "description": "# Purpose \n This endpoint returns data about animal metrics for all animals on a specific location. \n If animal-scheme and animal-id are provided, only the metrics for that animal are returned. \n",
           "parameters": [
             {
               "$ref": "#/components/parameters/location-scheme"
@@ -44,22 +44,22 @@
               "$ref": "#/components/parameters/animal-id"
             },
             {
-              "$ref": "#/components/parameters/observation-types"
+              "$ref": "#/components/parameters/metric-types"
             },
             {
-              "$ref": "#/components/parameters/observation-datetime-from"
+              "$ref": "#/components/parameters/metric-datetime-from"
             },
             {
-              "$ref": "#/components/parameters/observation-datetime-to"
+              "$ref": "#/components/parameters/metric-datetime-to"
             }
           ],
           "responses": {
             "200": {
-              "description": "Successful. The response contains animal observations for the given location.",
+              "description": "Successful. The response contains animal metrics for the given location.",
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/icarAnimalObservationCollection"
+                    "$ref": "#/components/schemas/icarAnimalMetricsCollection"
                   }
                 }
               }
@@ -73,8 +73,8 @@
     },
     "components": {
       "schemas": {
-        "icarAnimalObservationCollection": {
-          "$ref": "../collections/icarAnimalObservationCollection.json"
+        "icarAnimalMetricsCollection": {
+          "$ref": "../collections/icarAnimalMetricsCollection.json"
         }
       },
       "parameters": {
@@ -114,17 +114,17 @@
             "type": "string"
           }
         },
-        "observation-types": {
-          "name": "observation-types",
+        "metric-types": {
+          "name": "metric-types",
           "in": "query",
-          "description": "Observation type that you want to request, see observation types Enum icarObservationType.",
+          "description": "Metric type that you want to request, see metric types enum in icarAnimalMetricType.",
           "required": false,
           "schema": {
             "type": "string"
           }
         },
-        "observation-datetime-from": {
-          "name": "observation-datetime-from",
+        "metric-datetime-from": {
+          "name": "metric-datetime-from",
           "in": "query",
           "description": "The start datetime of the range in which you want to request data (UTC).",
           "required": false,
@@ -133,8 +133,8 @@
             "format": "date-time"
           }
         },
-        "observation-datetime-to": {
-          "name": "observation-datetime-to",
+        "metric-datetime-to": {
+          "name": "metric-datetime-to",
           "in": "query",
           "description": "The end datetime of the range in which you want to request data (UTC).",
           "required": false,
